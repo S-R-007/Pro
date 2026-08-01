@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "IoT Task",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp32", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-ds18b20", "id": "ds18b20", "top": -80, "left": 260, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht22", "top": -80, "left": 340, "attrs": {} },
+    { "type": "wokwi-neo-6m-gps", "id": "gps", "top": -180, "left": 260, "attrs": {} },
+    { "type": "wokwi-reed-switch", "id": "reed1", "top": 100, "left": 340, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "mpu1", "top": 180, "left": 260, "attrs": {} },
+    { "type": "wokwi-ssd1306", "id": "oled1", "top": -180, "left": 20, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "buzzer1", "top": 180, "left": 340, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 260, "left": 260, "attrs": {} },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": 260, "left": 20, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "batteryPot", "top": 340, "left": 340, "attrs": { "label": "Battery Level (sim)" } },
+    { "type": "wokwi-pushbutton", "id": "powerLossBtn", "top": 340, "left": 20, "attrs": { "label": "Toggle Main Power Loss" } }
+  ],
+  "connections": [
+    [ "esp32:D4", "ds18b20:DQ", "green", [] ],
+    [ "ds18b20:VCC", "esp32:3V3", "red", [] ],
+    [ "ds18b20:GND", "esp32:GND.1", "black", [] ],
+
+    [ "esp32:D15", "dht22:SDA", "green", [] ],
+    [ "dht22:VCC", "esp32:3V3", "red", [] ],
+    [ "dht22:GND", "esp32:GND.2", "black", [] ],
+
+    [ "esp32:RX2", "gps:TX", "green", [] ],
+    [ "esp32:TX2", "gps:RX", "yellow", [] ],
+    [ "gps:VCC", "esp32:3V3", "red", [] ],
+    [ "gps:GND", "esp32:GND.3", "black", [] ],
+
+    [ "esp32:D27", "reed1:SIG", "green", [] ],
+    [ "reed1:GND", "esp32:GND.1", "black", [] ],
+
+    [ "esp32:D21", "mpu1:SDA", "green", [] ],
+    [ "esp32:D22", "mpu1:SCL", "yellow", [] ],
+    [ "mpu1:VCC", "esp32:3V3", "red", [] ],
+    [ "mpu1:GND", "esp32:GND.2", "black", [] ],
+
+    [ "esp32:D21", "oled1:SDA", "green", [] ],
+    [ "esp32:D22", "oled1:SCL", "yellow", [] ],
+    [ "oled1:VCC", "esp32:3V3", "red", [] ],
+    [ "oled1:GND", "esp32:GND.3", "black", [] ],
+
+    [ "esp32:D26", "buzzer1:1", "green", [] ],
+    [ "buzzer1:2", "esp32:GND.1", "black", [] ],
+
+    [ "esp32:D25", "relay1:IN", "green", [] ],
+    [ "relay1:VCC", "esp32:5V", "red", [] ],
+    [ "relay1:GND", "esp32:GND.2", "black", [] ],
+
+    [ "esp32:D5", "sd1:CS", "green", [] ],
+    [ "esp32:D23", "sd1:MOSI", "blue", [] ],
+    [ "esp32:D19", "sd1:MISO", "orange", [] ],
+    [ "esp32:D18", "sd1:SCK", "yellow", [] ],
+    [ "sd1:VCC", "esp32:3V3", "red", [] ],
+    [ "sd1:GND", "esp32:GND.3", "black", [] ],
+
+    [ "esp32:D34", "batteryPot:SIG", "green", [] ],
+    [ "batteryPot:VCC", "esp32:3V3", "red", [] ],
+    [ "batteryPot:GND", "esp32:GND.1", "black", [] ],
+
+    [ "esp32:D32", "powerLossBtn:1.l", "green", [] ],
+    [ "powerLossBtn:2.l", "esp32:GND.2", "black", [] ]
+  ]
+}
